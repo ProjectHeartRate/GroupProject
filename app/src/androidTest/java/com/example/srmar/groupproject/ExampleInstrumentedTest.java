@@ -32,8 +32,8 @@ public class ExampleInstrumentedTest {
     private int a, b, c, d;
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
-            MainActivity.class);
+    public ActivityTestRule<AthleteRangeActivity> mActivityRule = new ActivityTestRule<>(
+            AthleteRangeActivity.class);
 
     @Before
     public void setValues(){

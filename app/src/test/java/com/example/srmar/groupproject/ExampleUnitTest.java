@@ -2,6 +2,7 @@ package com.example.srmar.groupproject;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 /**

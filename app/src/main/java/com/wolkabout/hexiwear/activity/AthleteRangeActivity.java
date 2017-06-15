@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.wolkabout.hexiwear.R;
+
 public class AthleteRangeActivity extends AppCompatActivity{
     //variables returned for ranges
     int stepRangeLow;
@@ -44,7 +46,7 @@ public class AthleteRangeActivity extends AppCompatActivity{
         });
         rangeBack.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
+                Intent athlete = new Intent(view.getContext(), com.example.srmar.groupproject.AthleteActivity.class);
                 startActivityForResult(athlete, 0);
             }
         });

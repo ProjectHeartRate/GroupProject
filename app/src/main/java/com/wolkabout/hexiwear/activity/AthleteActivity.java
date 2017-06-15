@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.wolkabout.hexiwear.R;
+import com.wolkabout.hexiwear.activity.MainActivity;
+
 public class AthleteActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class AthleteActivity extends AppCompatActivity{
         });
         athleteRange.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent athleteRangeScreen = new Intent(view.getContext(), AthleteRangeActivity.class);
+                Intent athleteRangeScreen = new Intent(view.getContext(), com.example.srmar.groupproject.AthleteRangeActivity.class);
                 startActivityForResult(athleteRangeScreen, 0);
             }
         });

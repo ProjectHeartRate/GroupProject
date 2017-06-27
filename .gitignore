@@ -1,3 +1,4 @@
+*.iml
 .gradle
 /local.properties
 /.idea/workspace.xml
@@ -5,9 +6,4 @@
 .DS_Store
 /build
 /captures
-.idea
-*.iml
-
-/app/publishing
-/app/hexiwear.properties
-/app/google-services.json
+.externalNativeBuild

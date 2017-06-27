@@ -22,14 +22,14 @@ import static org.junit.Assert.*;
 
 /**
  * Instrumentation test, which will execute on an Android device.
- *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
     //integers for heart rate and step values for test
-    private int a, b, c, d;
+    private int a, b, c, d, t1Low, t1High, t2Low, t2High, t3Low, t3High;
+
 
     @Rule
     public ActivityTestRule<AthleteRangeActivity> mActivityRule = new ActivityTestRule<>(
@@ -41,6 +41,12 @@ public class ExampleInstrumentedTest {
         b = 20000;
         c = 70;
         d = 100;
+        t1Low = 0;
+        t1High = 0;
+        t2Low = 30;
+        t2High = 20;
+        t3Low = 20;
+        t3High = 50;
     }
 
     @Test
@@ -63,5 +69,28 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.hrEnter)).perform(click());
         onView(withId(R.id.hrLow)).check(matches(withText(Integer.toString(mActivityRule.getActivity().getHrLow()))));
         onView(withId(R.id.hrHigh)).check(matches(withText(Integer.toString(mActivityRule.getActivity().getHrHigh()))));
+    }
+
+    @Test
+    //The Following tests endure the correct text is displayed when a certain range is entered
+    public void rangeTest1(){
+        onView(withId(hrLow)).perform(typeText(String.valueOf(t1Low)));
+        onView(withId(hrHigh)).perform(typeText(String.valueOf(t1High)));
+        onView(withId(R.id.hrEnter)).perform(click());
+        onView(withId(R.id.hrSetRange)).check(matches(withText("Heart Rate: No range set.")));
+    }
+    @Test
+    public void rangeTest2(){
+        onView(withId(hrLow)).perform(typeText(String.valueOf(t2Low)));
+        onView(withId(hrHigh)).perform(typeText(String.valueOf(t2High)));
+        onView(withId(R.id.hrEnter)).perform(click());
+        onView(withId(R.id.hrSetRange)).check(matches(withText("Heart Rate: Invalid range.")));
+    }
+    @Test
+    public void rangeTest3(){
+        onView(withId(hrLow)).perform(typeText(String.valueOf(t3Low)));
+        onView(withId(hrHigh)).perform(typeText(String.valueOf(t3High)));
+        onView(withId(R.id.hrEnter)).perform(click());
+        onView(withId(R.id.hrSetRange)).check(matches(withText("Heart Rate: "+mActivityRule.getActivity().hrRangeLow+" to "+mActivityRule.getActivity().hrRangeHigh+".")));
     }
 }

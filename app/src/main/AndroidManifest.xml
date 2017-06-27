@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".AthleteActivity"></activity>
         <activity android:name=".AthleteRangeActivity"></activity>
+        <activity android:name=".CoachActivity"></activity>
     </application>
 
 </manifest>

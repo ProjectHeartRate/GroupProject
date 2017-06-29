@@ -14,7 +14,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     /**
      * This method creates the main activity user interface.
-     * @param savedInstanceState
+     * @param savedInstanceState not sure what it does.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

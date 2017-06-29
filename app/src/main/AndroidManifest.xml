@@ -19,6 +19,8 @@
         <activity android:name=".AthleteActivity"></activity>
         <activity android:name=".AthleteRangeActivity"></activity>
         <activity android:name=".CoachActivity"></activity>
+        <activity android:name=".AthleteStepsActivity"></activity>
+        <activity android:name=".AthleteHeartRateActivity"></activity>
     </application>
 
 </manifest>

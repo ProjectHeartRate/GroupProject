@@ -22,7 +22,7 @@ public class AthleteRangeActivity extends AppCompatActivity{
 
     /**
      * This method creates the athlete range activity ui.
-     * @param savedInstanceState
+     * @param savedInstanceState not sure what it does.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

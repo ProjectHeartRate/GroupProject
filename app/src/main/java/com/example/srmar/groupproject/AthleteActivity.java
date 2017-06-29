@@ -15,7 +15,7 @@ import android.widget.Button;
 public class AthleteActivity extends AppCompatActivity{
     /**
      * This method creates the athlete activity user interface.
-     * @param savedInstanceState
+     * @param savedInstanceState not sure what it does.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +30,22 @@ public class AthleteActivity extends AppCompatActivity{
 
         athleteStep.setOnClickListener(new View.OnClickListener(){
             /**
-             * Does nothing
+             * On click opens AthleteStepsActivity ui.
              * @param view sets the ui.
              */
             public void onClick(View view){
-                //nothing yet
+                Intent athleteStepsScreen = new Intent(view.getContext(), AthleteStepsActivity.class);
+                startActivityForResult(athleteStepsScreen, 0);
             }
         });
         athleteHr.setOnClickListener(new View.OnClickListener(){
             /**
-             * Does nothing.
+             * On click opens AthleteHeartRateActivity ui.
              * @param view sets the ui.
              */
             public void onClick(View view){
-                //nothing yet
+                Intent athleteHeartrateScreen = new Intent(view.getContext(), AthleteHeartRateActivity.class);
+                startActivityForResult(athleteHeartrateScreen, 0);
             }
         });
         athleteRange.setOnClickListener(new View.OnClickListener(){

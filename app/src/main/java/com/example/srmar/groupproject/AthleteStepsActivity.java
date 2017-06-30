@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * This class presents a user interface that displays the number of steps the athlete has taken
@@ -12,6 +14,8 @@ import android.widget.Button;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteStepsActivity extends AppCompatActivity {
+    int steps = 10000;
+
     /**
      * This method creates the athlete steps activity ui.
      * @param savedInstanceState not sure what it does.
@@ -23,6 +27,8 @@ public class AthleteStepsActivity extends AppCompatActivity {
 
         //initialize ui elements
         final Button stepsBack = (Button) findViewById(R.id.stepsBack);
+        final TextView stepsToday = (TextView) findViewById(R.id.stepsToday);
+        final ListView stepHistory = (ListView) findViewById(R.id.stepsHistory);
 
         stepsBack.setOnClickListener(new View.OnClickListener(){
             /**
@@ -34,5 +40,28 @@ public class AthleteStepsActivity extends AppCompatActivity {
                 startActivityForResult(athlete, 0);
             }
         });
+
+        if (steps >= 0){
+            stepsToday.setText("Steps: "+steps+".");
+        }
+        if (steps < 0){
+            stepsToday.setText("Steps: Invalid input.");
+        }
+    }
+
+    /**
+     * Getter for the number of steps.
+     * @return steps
+     */
+    public int getSteps(){
+        return steps;
+    }
+
+    /**
+     * Steer for the number of steps.
+     * @param steps the number of steps
+     */
+    public void setSteps(int steps){
+        this.steps = steps;
     }
 }

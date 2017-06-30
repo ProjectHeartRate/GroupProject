@@ -23,6 +23,9 @@ import static org.junit.Assert.*;
 /**
  * Instrumentation test, which will execute on an Android device.
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ *
+ * Tests for AthleteRangeActivity class.
+ * @author Scott Martell, Jenna McNeil
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
@@ -35,6 +38,9 @@ public class ExampleInstrumentedTest {
     public ActivityTestRule<AthleteRangeActivity> mActivityRule = new ActivityTestRule<>(
             AthleteRangeActivity.class);
 
+    /**
+     * Sets values to test variables
+     */
     @Before
     public void setValues(){
         a = 10000;
@@ -49,9 +55,11 @@ public class ExampleInstrumentedTest {
         t3High = 50;
     }
 
+    /**
+     * enters high and low values for step range, on click these values are assigned to variables
+     * the variables and values are checked to make sure they are equal.
+     */
     @Test
-    //enters high and low values for step range, on click these values are assigned to variables
-    //the variables and values are checked to make sure they are equal.
     public void stepTest(){
         onView(withId(stepLow)).perform(typeText(String.valueOf(a)));
         onView(withId(stepHigh)).perform(typeText(String.valueOf(b)));
@@ -60,9 +68,11 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.stepHigh)).check(matches(withText(Integer.toString(mActivityRule.getActivity().getStepHigh()))));
     }
 
+    /**
+     * enters high and low values for heart rate range, on click these values are assigned to variables
+     * the variables and values are checked to make sure they are equal.
+     */
     @Test
-    //enters high and low values for heart rate range, on click these values are assigned to variables
-    //the variables and values are checked to make sure they are equal.
     public void hrTest(){
         onView(withId(hrLow)).perform(typeText(String.valueOf(c)));
         onView(withId(hrHigh)).perform(typeText(String.valueOf(d)));
@@ -71,14 +81,20 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.hrHigh)).check(matches(withText(Integer.toString(mActivityRule.getActivity().getHrHigh()))));
     }
 
+    /**
+     * endures the correct text is displayed when a certain range is entered
+     */
     @Test
-    //The Following tests endure the correct text is displayed when a certain range is entered
     public void rangeTest1(){
         onView(withId(hrLow)).perform(typeText(String.valueOf(t1Low)));
         onView(withId(hrHigh)).perform(typeText(String.valueOf(t1High)));
         onView(withId(R.id.hrEnter)).perform(click());
         onView(withId(R.id.hrSetRange)).check(matches(withText("Heart Rate: No range set.")));
     }
+
+    /**
+     * endures the correct text is displayed when a certain range is entered
+     */
     @Test
     public void rangeTest2(){
         onView(withId(hrLow)).perform(typeText(String.valueOf(t2Low)));
@@ -86,6 +102,10 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.hrEnter)).perform(click());
         onView(withId(R.id.hrSetRange)).check(matches(withText("Heart Rate: Invalid range.")));
     }
+
+    /**
+     * endures the correct text is displayed when a certain range is entered
+     */
     @Test
     public void rangeTest3(){
         onView(withId(hrLow)).perform(typeText(String.valueOf(t3Low)));

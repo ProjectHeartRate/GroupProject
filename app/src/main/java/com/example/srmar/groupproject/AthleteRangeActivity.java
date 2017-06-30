@@ -15,10 +15,10 @@ import android.widget.TextView;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteRangeActivity extends AppCompatActivity{
-    int stepRangeLow = 0;
-    int stepRangeHigh = 0;
-    int hrRangeLow = 0;
-    int hrRangeHigh = 0;
+    int stepRangeLow = 2000;
+    int stepRangeHigh = 10000;
+    int hrRangeLow = 80;
+    int hrRangeHigh = 120;
 
     /**
      * This method creates the athlete range activity ui.

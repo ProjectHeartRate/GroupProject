@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * This class presents a user interface that displays the heartrate the athlete, as well as a
@@ -12,6 +14,8 @@ import android.widget.Button;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteHeartRateActivity extends AppCompatActivity {
+    int heartRate = 90;
+
     /**
      * This method creates the athlete heartrate activity ui.
      * @param savedInstanceState not sure what it does.
@@ -23,6 +27,9 @@ public class AthleteHeartRateActivity extends AppCompatActivity {
 
         //initialize ui elements
         final Button heartrateBack = (Button) findViewById(R.id.heartrateBack);
+        final TextView heartrateCurrent = (TextView) findViewById(R.id.heartrateCurrent);
+        final ListView heartrateHistory = (ListView) findViewById(R.id.heartRateHistory);
+
 
         heartrateBack.setOnClickListener(new View.OnClickListener(){
             /**
@@ -34,5 +41,28 @@ public class AthleteHeartRateActivity extends AppCompatActivity {
                 startActivityForResult(athlete, 0);
             }
         });
+
+        if (heartRate >= 0){
+            heartrateCurrent.setText("Heart Rate: "+heartRate+".");
+        }
+        if (heartRate < 0){
+            heartrateCurrent.setText("Heart Rate: Invalid input.");
+        }
+    }
+
+    /**
+     * Getter for heartrate.
+     * @return heartRate.
+     */
+    public int getHeartRate(){
+        return heartRate;
+    }
+
+    /**
+     * Setter for heartrate
+     * @param heartRate value for current heartrate.
+     */
+    public void setHeartRate(int heartRate){
+        this.heartRate = heartRate;
     }
 }

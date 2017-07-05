@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.srmar.groupproject">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".MyApplicationData"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,11 +19,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AthleteActivity"></activity>
-        <activity android:name=".AthleteRangeActivity"></activity>
-        <activity android:name=".CoachActivity"></activity>
-        <activity android:name=".AthleteStepsActivity"></activity>
-        <activity android:name=".AthleteHeartRateActivity"></activity>
+        <activity
+            android:name=".AthleteActivity"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".AthleteRangeActivity"
+            android:parentActivityName=".AthleteActivity"></activity>
+        <activity
+            android:name=".CoachActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".AthleteStepsActivity"
+            android:parentActivityName=".AthleteActivity">
+
+        </activity>
+        <activity
+            android:name=".AthleteHeartRateActivity"
+            android:parentActivityName=".AthleteActivity"></activity>
+        <activity
+            android:name=".CreateAthleteActivity"
+            android:parentActivityName=".CoachActivity">
+        </activity>
+
     </application>
 
 </manifest>

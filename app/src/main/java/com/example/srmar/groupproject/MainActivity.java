@@ -12,6 +12,10 @@ import android.widget.Button;
  * @author Scott Martell, Jenna McNeil
  */
 public class MainActivity extends AppCompatActivity {
+
+    private Button coachButton;
+    private Button athleteButton;
+
     /**
      * This method creates the main activity user interface.
      * @param savedInstanceState not sure what it does.
@@ -22,29 +26,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //initializing ui elements
-        final Button coachButton = (Button) findViewById(R.id.coach);
-        final Button athleteButton = (Button) findViewById(R.id.athlete);
+        coachButton = (Button) findViewById(R.id.coach);
+        athleteButton = (Button) findViewById(R.id.athlete);
+    }
 
+    /**
+     * On click opens CoachActivity ui.
+     * @param view sets the ui.
+     */
+    public void showCoachActivity(View view){
+        Intent coachScreen = new Intent(this, CoachActivity.class);
+        startActivity(coachScreen);
+    }
 
-        coachButton.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens CoachActivity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent coachScreen = new Intent(view.getContext(), CoachActivity.class);
-                startActivityForResult(coachScreen, 0);
-            }
-        });
-        athleteButton.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens AthleteActivity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent athleteScreen = new Intent(view.getContext(), AthleteActivity.class);
-                startActivityForResult(athleteScreen, 0);
-            }
-        });
+    /**
+     * On click opens AthleteActivity ui.
+     * @param view sets the ui.
+     */
+    public void showAthleteActivity(View view){
+        Intent athleteScreen = new Intent(this, AthleteActivity.class);
+        startActivity(athleteScreen);
     }
 }

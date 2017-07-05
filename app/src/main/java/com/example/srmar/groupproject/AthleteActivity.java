@@ -13,6 +13,12 @@ import android.widget.Button;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteActivity extends AppCompatActivity{
+
+    private Button athleteBack;
+    private Button athleteStep;
+    private Button athleteHr;
+    private Button athleteRange;
+
     /**
      * This method creates the athlete activity user interface.
      * @param savedInstanceState not sure what it does.
@@ -23,50 +29,45 @@ public class AthleteActivity extends AppCompatActivity{
         setContentView(R.layout.activity_athlete);
 
         //initializing ui elements
-        final Button athleteBack = (Button) findViewById(R.id.athleteBack);
-        final Button athleteStep = (Button) findViewById(R.id.athleteStep);
-        final Button athleteHr = (Button) findViewById(R.id.athleteHr);
-        final Button athleteRange = (Button) findViewById(R.id.athleteRange);
+        athleteBack = (Button) findViewById(R.id.athleteBack);
+        athleteStep = (Button) findViewById(R.id.athleteStep);
+        athleteHr = (Button) findViewById(R.id.athleteHr);
+        athleteRange = (Button) findViewById(R.id.athleteRange);
+    }
 
-        athleteStep.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens AthleteStepsActivity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent athleteStepsScreen = new Intent(view.getContext(), AthleteStepsActivity.class);
-                startActivityForResult(athleteStepsScreen, 0);
-            }
-        });
-        athleteHr.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens AthleteHeartRateActivity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent athleteHeartrateScreen = new Intent(view.getContext(), AthleteHeartRateActivity.class);
-                startActivityForResult(athleteHeartrateScreen, 0);
-            }
-        });
-        athleteRange.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens AthleteRangeActivity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent athleteRangeScreen = new Intent(view.getContext(), AthleteRangeActivity.class);
-                startActivityForResult(athleteRangeScreen, 0);
-            }
-        });
-        athleteBack.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens MainActivity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent main = new Intent(view.getContext(), MainActivity.class);
-                startActivityForResult(main, 0);
-            }
-        });
+    /**
+     * On click opens AthleteStepsActivity ui.
+     * @param view sets the ui.
+     */
+    public void showAthleteStepsActivity(View view){
+        Intent athleteStepsScreen = new Intent(this, AthleteStepsActivity.class);
+        startActivity(athleteStepsScreen);
+    }
+
+    /**
+     * On click opens AthleteHeartRateActivity ui.
+     * @param view sets the ui.
+     */
+    public void showAthleteHeartRateActivity(View view){
+        Intent athleteHeartrateScreen = new Intent(this, AthleteHeartRateActivity.class);
+        startActivity(athleteHeartrateScreen);
+    }
+
+    /**
+     * On click opens AthleteRangeActivity ui.
+     * @param view sets the ui.
+     */
+    public void showAthleteRangeActivity(View view){
+        Intent athleteRangeScreen = new Intent(this, AthleteRangeActivity.class);
+        startActivity(athleteRangeScreen);
+    }
+
+    /**
+     * On click opens MainActivity ui.
+     * @param view sets the ui.
+     */
+    public void showAthleteBack(View view){
+        Intent main = new Intent(this, MainActivity.class);
+        startActivity(main);
     }
 }

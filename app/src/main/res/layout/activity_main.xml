@@ -19,7 +19,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.391"
+        android:onClick="showAthleteActivity" />
 
     <Button
         android:id="@+id/coach"
@@ -34,6 +35,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.14"
+        android:onClick="showCoachActivity" />
 
 </android.support.constraint.ConstraintLayout>

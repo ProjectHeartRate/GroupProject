@@ -73,7 +73,7 @@ public class AthleteRangeActivity extends AppCompatActivity{
     }
 
     /**
-     * On click sets the step ranges or lets the user know the range is invalid.
+     * On click sets the step ranges or shows that the entered values are invalid.
      * @param view sets the ui.
      */
     public void enterStepRange(View view){

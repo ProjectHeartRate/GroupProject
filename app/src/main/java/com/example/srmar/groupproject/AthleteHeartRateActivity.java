@@ -15,6 +15,9 @@ import android.widget.TextView;
  */
 public class AthleteHeartRateActivity extends AppCompatActivity {
     int heartRate = 90;
+    private Button heartrateBack;
+    private TextView heartrateCurrent;
+    private ListView heartrateHistory;
 
     /**
      * This method creates the athlete heartrate activity ui.
@@ -26,21 +29,9 @@ public class AthleteHeartRateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_athlete_heartrate);
 
         //initialize ui elements
-        final Button heartrateBack = (Button) findViewById(R.id.heartrateBack);
-        final TextView heartrateCurrent = (TextView) findViewById(R.id.heartrateCurrent);
-        final ListView heartrateHistory = (ListView) findViewById(R.id.heartRateHistory);
-
-
-        heartrateBack.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens the Athlete activity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
-                startActivityForResult(athlete, 0);
-            }
-        });
+        heartrateBack = (Button) findViewById(R.id.heartrateBack);
+        heartrateCurrent = (TextView) findViewById(R.id.heartrateCurrent);
+        heartrateHistory = (ListView) findViewById(R.id.heartRateHistory);
 
         if (heartRate >= 0){
             heartrateCurrent.setText("Heart Rate: "+heartRate+".");
@@ -48,6 +39,15 @@ public class AthleteHeartRateActivity extends AppCompatActivity {
         if (heartRate < 0){
             heartrateCurrent.setText("Heart Rate: Invalid input.");
         }
+    }
+
+    /**
+     * On click opens the Athlete activity ui.
+     * @param view sets the ui.
+     */
+    public void hrBack(View view){
+        Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
+        startActivityForResult(athlete, 0);
     }
 
     /**

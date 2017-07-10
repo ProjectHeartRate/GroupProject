@@ -15,6 +15,9 @@ import android.widget.TextView;
  */
 public class AthleteStepsActivity extends AppCompatActivity {
     int steps = 10000;
+    private Button stepsBack;
+    private TextView stepsToday;
+    private ListView stepHistory;
 
     /**
      * This method creates the athlete steps activity ui.
@@ -26,20 +29,9 @@ public class AthleteStepsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_athlete_steps);
 
         //initialize ui elements
-        final Button stepsBack = (Button) findViewById(R.id.stepsBack);
-        final TextView stepsToday = (TextView) findViewById(R.id.stepsToday);
-        final ListView stepHistory = (ListView) findViewById(R.id.stepsHistory);
-
-        stepsBack.setOnClickListener(new View.OnClickListener(){
-            /**
-             * On click opens the Athlete activity ui.
-             * @param view sets the ui.
-             */
-            public void onClick(View view){
-                Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
-                startActivityForResult(athlete, 0);
-            }
-        });
+        stepsBack = (Button) findViewById(R.id.stepsBack);
+        stepsToday = (TextView) findViewById(R.id.stepsToday);
+        stepHistory = (ListView) findViewById(R.id.stepsHistory);
 
         if (steps >= 0){
             stepsToday.setText("Steps: "+steps+".");
@@ -47,6 +39,15 @@ public class AthleteStepsActivity extends AppCompatActivity {
         if (steps < 0){
             stepsToday.setText("Steps: Invalid input.");
         }
+    }
+
+    /**
+     * On click opens the Athlete activity ui.
+     * @param view sets the ui.
+     */
+    public void stepsBack(View view){
+        Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
+        startActivityForResult(athlete, 0);
     }
 
     /**

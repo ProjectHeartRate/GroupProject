@@ -14,10 +14,12 @@ import android.widget.TextView;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteStepsActivity extends AppCompatActivity {
-    int steps = 10000;
+    int steps;
     private Button stepsBack;
     private TextView stepsToday;
     private ListView stepHistory;
+    private Athlete person;
+    private MyApplicationData appState;
 
     /**
      * This method creates the athlete steps activity ui.
@@ -27,6 +29,9 @@ public class AthleteStepsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athlete_steps);
+        person = (Athlete)getIntent().getSerializableExtra("Athlete");
+        appState = ((MyApplicationData) getApplicationContext());
+        steps = Integer.parseInt(person.steps);
 
         //initialize ui elements
         stepsBack = (Button) findViewById(R.id.stepsBack);
@@ -46,8 +51,9 @@ public class AthleteStepsActivity extends AppCompatActivity {
      * @param view sets the ui.
      */
     public void stepsBack(View view){
-        Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
-        startActivityForResult(athlete, 0);
+        Intent athlete = new Intent(this, AthleteActivity.class);
+        athlete.putExtra("Athlete", person);
+        startActivity(athlete);
     }
 
     /**

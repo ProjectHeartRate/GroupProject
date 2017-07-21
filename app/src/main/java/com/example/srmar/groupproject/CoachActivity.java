@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseListAdapter;
 
-
 /**
  * This class, currently does nothing but open an empty screen. Eventually it will be show
  * the user interface for the coach.

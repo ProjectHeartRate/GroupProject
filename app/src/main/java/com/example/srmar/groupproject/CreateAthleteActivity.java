@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import java.util.*;
 
 /**
  * This class displays the interface for creating a new athlete.
@@ -16,6 +17,7 @@ public class CreateAthleteActivity extends AppCompatActivity{
     private EditText athleteName;
     private Button submitButton;
     private MyApplicationData appState;
+    Random rand = new Random();
 
     /**
      * Creates ui for creating athlete.
@@ -40,7 +42,20 @@ public class CreateAthleteActivity extends AppCompatActivity{
     public void submitInfoButton(View view){
         String personID = appState.firebaseReference.push().getKey();
         String name = athleteName.getText().toString();
-        Athlete person = new Athlete(personID, name);
+        int randSteps = rand.nextInt(39500) + 500;
+        String steps = Integer.toString(randSteps);
+        int randHr = rand.nextInt(100) + 50;
+        String heartRate = Integer.toString(randHr);
+        int setStepHigh = 0;
+        String stepsHigh = Integer.toString(setStepHigh);
+        int setStepLow = 0;
+        String stepsLow = Integer.toString(setStepLow);
+        int setHrHigh = 0;
+        String hrHigh = Integer.toString(setHrHigh);
+        int setHrLow = 0;
+        String hrLow = Integer.toString(setHrLow);
+
+        Athlete person = new Athlete(personID, name, steps, heartRate, stepsHigh, stepsLow, hrHigh, hrLow);
         appState.firebaseReference.child(personID).setValue(person);
 
         finish();

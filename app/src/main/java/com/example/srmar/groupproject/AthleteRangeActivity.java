@@ -15,10 +15,12 @@ import android.widget.TextView;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteRangeActivity extends AppCompatActivity{
-    int stepRangeLow = 2000;
-    int stepRangeHigh = 10000;
-    int hrRangeLow = 80;
-    int hrRangeHigh = 120;
+    int stepRangeLow;
+    int stepRangeHigh;
+    int hrRangeLow;
+    int hrRangeHigh;
+    private Athlete person;
+    private MyApplicationData appState;
     private EditText stepLow;
     private EditText stepHigh;
     private EditText hrLow;
@@ -37,6 +39,13 @@ public class AthleteRangeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athlete_range);
+        person = (Athlete)getIntent().getSerializableExtra("Athlete");
+        appState = ((MyApplicationData) getApplicationContext());
+
+        stepRangeLow = Integer.parseInt(person.stepLow);
+        stepRangeHigh = Integer.parseInt(person.stepHigh);
+        hrRangeLow = Integer.parseInt(person.hrLow);
+        hrRangeHigh = Integer.parseInt(person.hrHigh);
 
         //initializing ui elements
         stepLow = (EditText) findViewById(R.id.stepLow);
@@ -77,6 +86,8 @@ public class AthleteRangeActivity extends AppCompatActivity{
      * @param view sets the ui.
      */
     public void enterStepRange(View view){
+        person.stepLow = stepLow.getText().toString();
+        person.stepHigh = stepHigh.getText().toString();
         stepRangeLow = Integer.parseInt(stepLow.getText().toString());
         stepRangeHigh = Integer.parseInt(stepHigh.getText().toString());
         if(stepRangeLow > stepRangeHigh){
@@ -88,6 +99,7 @@ public class AthleteRangeActivity extends AppCompatActivity{
         else{
             stepSetRange.setText("Steps: "+stepRangeLow+" to "+stepRangeHigh+".");
         }
+        appState.firebaseReference.child(person.uid).setValue(person);
     }
 
     /**
@@ -95,6 +107,8 @@ public class AthleteRangeActivity extends AppCompatActivity{
      * @param view sets the ui.
      */
     public void enterHrRange(View view){
+        person.hrLow = hrLow.getText().toString();
+        person.hrHigh = hrHigh.getText().toString();
         hrRangeLow = Integer.parseInt(hrLow.getText().toString());
         hrRangeHigh = Integer.parseInt(hrHigh.getText().toString());
         if(hrRangeLow > hrRangeHigh){
@@ -106,6 +120,7 @@ public class AthleteRangeActivity extends AppCompatActivity{
         else{
             hrSetRange.setText("Heart Rate: "+hrRangeLow+" to "+hrRangeHigh+".");
         }
+        appState.firebaseReference.child(person.uid).setValue(person);
     }
 
     /**
@@ -113,8 +128,9 @@ public class AthleteRangeActivity extends AppCompatActivity{
      * @param view sets the ui.
      */
     public void rangeBack(View view){
-        Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
-        startActivityForResult(athlete, 0);
+        Intent athlete = new Intent(this, AthleteActivity.class);
+        athlete.putExtra("Athlete", person);
+        startActivity(athlete);
     }
 
     /**

@@ -18,6 +18,7 @@ public class AthleteActivity extends AppCompatActivity{
     private Button athleteStep;
     private Button athleteHr;
     private Button athleteRange;
+    private Athlete person;
 
     /**
      * This method creates the athlete activity user interface.
@@ -27,6 +28,7 @@ public class AthleteActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athlete);
+        person = (Athlete)getIntent().getSerializableExtra("Athlete");
 
         //initializing ui elements
         athleteBack = (Button) findViewById(R.id.athleteBack);
@@ -41,6 +43,7 @@ public class AthleteActivity extends AppCompatActivity{
      */
     public void showAthleteStepsActivity(View view){
         Intent athleteStepsScreen = new Intent(this, AthleteStepsActivity.class);
+        athleteStepsScreen.putExtra("Athlete", person);
         startActivity(athleteStepsScreen);
     }
 
@@ -50,6 +53,7 @@ public class AthleteActivity extends AppCompatActivity{
      */
     public void showAthleteHeartRateActivity(View view){
         Intent athleteHeartrateScreen = new Intent(this, AthleteHeartRateActivity.class);
+        athleteHeartrateScreen.putExtra("Athlete", person);
         startActivity(athleteHeartrateScreen);
     }
 
@@ -59,6 +63,7 @@ public class AthleteActivity extends AppCompatActivity{
      */
     public void showAthleteRangeActivity(View view){
         Intent athleteRangeScreen = new Intent(this, AthleteRangeActivity.class);
+        athleteRangeScreen.putExtra("Athlete", person);
         startActivity(athleteRangeScreen);
     }
 

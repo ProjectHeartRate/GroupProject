@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.util.*;
 
 /**
  * This class presents a user interface that displays the heartrate the athlete, as well as a
@@ -14,10 +15,12 @@ import android.widget.TextView;
  * @author Scott Martell, Jenna McNeil
  */
 public class AthleteHeartRateActivity extends AppCompatActivity {
-    int heartRate = 90;
+    int heartRate;
     private Button heartrateBack;
     private TextView heartrateCurrent;
     private ListView heartrateHistory;
+    private Athlete person;
+    private MyApplicationData appState;
 
     /**
      * This method creates the athlete heartrate activity ui.
@@ -27,6 +30,9 @@ public class AthleteHeartRateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_athlete_heartrate);
+        person = (Athlete)getIntent().getSerializableExtra("Athlete");
+        appState = ((MyApplicationData) getApplicationContext());
+        heartRate = Integer.parseInt(person.heartRate);
 
         //initialize ui elements
         heartrateBack = (Button) findViewById(R.id.heartrateBack);
@@ -46,8 +52,9 @@ public class AthleteHeartRateActivity extends AppCompatActivity {
      * @param view sets the ui.
      */
     public void hrBack(View view){
-        Intent athlete = new Intent(view.getContext(), AthleteActivity.class);
-        startActivityForResult(athlete, 0);
+        Intent athlete = new Intent(this, AthleteActivity.class);
+        athlete.putExtra("Athlete", person);
+        startActivity(athlete);
     }
 
     /**

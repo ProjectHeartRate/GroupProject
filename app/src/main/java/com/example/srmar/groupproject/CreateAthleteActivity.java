@@ -3,10 +3,19 @@ package com.example.srmar.groupproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import java.util.*;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.sql.DatabaseMetaData;
 
 /**
  * This class displays the interface for creating a new athlete.
@@ -16,6 +25,7 @@ public class CreateAthleteActivity extends AppCompatActivity{
 
     private EditText athleteName;
     private Button submitButton;
+    private Button deleteButton;
     private MyApplicationData appState;
     Random rand = new Random();
 
@@ -32,6 +42,8 @@ public class CreateAthleteActivity extends AppCompatActivity{
 
         athleteName = (EditText) findViewById(R.id.athleteName);
         submitButton = (Button) findViewById(R.id.submitButton);
+        deleteButton = (Button) findViewById(R.id.deleteButton);
+
     }
 
 
@@ -59,5 +71,38 @@ public class CreateAthleteActivity extends AppCompatActivity{
         appState.firebaseReference.child(personID).setValue(person);
 
         finish();
+    }
+    
+    public void deleteAthlete(View view){
+        String name = athleteName.getText().toString();
+        Query q = appState.firebaseReference.orderByChild("name").equalTo(name);
+        q.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                DataSnapshot d = dataSnapshot;
+                appState.firebaseReference.child(d.getKey()).removeValue();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+            finish();
     }
 }
